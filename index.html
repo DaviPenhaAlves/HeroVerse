@@ -6,12 +6,13 @@
   <!-- Informações da página (não aparecem na tela) -->
   <meta charset="UTF-8">   <!-- permite usar acentos e caracteres especiais -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">   <!-- ajusta o site para o celular -->
-  <meta name="description" content="Notícias, curiosidades e conteúdos sobre o universo dos super-heróis.">
+  <meta name="description" content="Notícias, cinema, lançamentos e desafios sobre os universos Marvel e DC.">
   <title>HeroVerse | O universo dos heróis</title>   <!-- texto que aparece na aba do navegador -->
-  <link rel="stylesheet" href="css/style.css">   <!-- liga o arquivo de estilos (CSS) -->
+  <link rel="stylesheet" href="CSS/style.css">   <!-- liga o arquivo de estilos (CSS) -->
 </head>
 <body>
-  <!-- CABEÇALHO: logo, menu de links, botão do menu (celular) e botão da pesquisa. A logo é feita só com texto, não precisa de imagem. -->
+  <!-- CABEÇALHO: logo, menu de links, botão do menu (celular) e botão da pesquisa.
+       A logo é feita só com texto, não precisa de imagem. -->
   <header class="site-header">
     <a class="logo" href="#inicio" aria-label="HeroVerse - página inicial">HERO<span>VERSE</span></a>
 
@@ -21,7 +22,9 @@
     <nav class="main-nav" id="mainNav" aria-label="Navegação principal">
       <a class="active" href="#inicio">Início</a>
       <a href="#ultimas">Notícias</a>
+      <a href="#cinema">Cinema</a>
       <a href="#sobre">Sobre</a>
+      <button class="nav-quiz-button" id="abrirQuizMenu" type="button" aria-controls="quizModal">Quiz</button>
     </nav>
 
     <button class="search-toggle" id="searchToggle" type="button" aria-label="Abrir pesquisa" aria-expanded="false" aria-controls="searchBox">⌕</button>
@@ -40,21 +43,25 @@
     <!-- PÁGINA INICIAL: tudo que está dentro desta div some quando uma matéria é aberta (controlado pelo script.js) -->
     <div id="paginaInicial">
 
-    <!-- BANNER PRINCIPAL (destaque: Vingadores: Doutor Destino)-->
+    <!-- BANNER PRINCIPAL (destaque: Vingadores: Doutor Destino): imagem grande com título e texto por cima -->
     <section class="hero-banner" aria-labelledby="heroTitle">
-      <!-- IMAGEM 1 (IMG/hero.jpg).-->
+      <!-- IMAGEM 1 (IMG/hero.jpg): imagem de divulgação de "Vingadores: Doutor Destino" (pôster ou cena do trailer).
+           Use uma foto horizontal, de preferência com 1920 x 800 px ou maior. O lado esquerdo fica escurecido pelo texto. -->
       <img class="hero-image" src="IMG/hero.jpg" alt="Imagem de divulgação de Vingadores: Doutor Destino">
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-content">
         <span class="eyebrow">DESTAQUE <span class="dot">•</span> CINEMA</span>
         <h1 id="heroTitle">Vingadores: Doutor Destino chega em dezembro</h1>
         <p>Com Robert Downey Jr. como o vilão, a volta de Steve Rogers e heróis dos X-Men e do Quarteto Fantástico, o filme dos irmãos Russo abre o desfecho da Saga do Multiverso. A estreia nos cinemas é em 18 de dezembro.</p>
-        <a class="text-link" href="#ultimas">Explorar notícias <span aria-hidden="true">→</span></a>
+        <a class="text-link" href="#cinema">Explorar cinema <span aria-hidden="true">→</span></a>
       </div>
     </section>
 
 
-    <!-- TRÊS MATÉRIAS EM DESTAQUE (imagens 2, 3 e 4). -->
+    <!-- TRÊS MATÉRIAS EM DESTAQUE (imagens 2, 3 e 4). Tamanho sugerido: 800 x 400 px, na horizontal.
+         Cada <article> é um card. Para mudar o texto, edite o que está dentro de <span>, <h2> e <p>.
+         O link do título (class="card-link") abre a matéria. O trecho depois de #noticia/ precisa ser
+         igual ao id da matéria no arquivo js/noticias.js. O link cobre o card inteiro (veja o CSS). -->
     <section class="featured container" aria-label="Notícias em destaque">
       <article class="feature-card">
         <!-- IMAGEM 2 (IMG/destaque-tecnologia.jpg): armadura ou tecnologia de um herói -->
@@ -88,7 +95,10 @@
     </section>
 
 
-    <!-- ÚLTIMAS NOTÍCIAS: o campo de pesquisa filtra estes seis cards. -->
+    <!-- ÚLTIMAS NOTÍCIAS: o campo de pesquisa filtra estes seis cards.
+         Imagens 5 a 10. Tamanho sugerido: 800 x 420 px, na horizontal.
+         O atributo data-search guarda palavras extras para a pesquisa encontrar o card.
+         Para criar uma nova notícia, copie um <article> inteiro e troque as imagens e os textos. -->
     <section class="latest container" id="ultimas">
       <div class="section-heading">
         <div>
@@ -140,7 +150,7 @@
         </article>
 
         <article class="news-card" data-search="equipes curiosidades heróis juntos cooperação">
-          <!-- IMAGEM 9 (IMG/noticia-equipe.jpg): equipe de heróis em silhueta -->
+          <!-- IMAGEM 9 (IMG/noticia-equipe.jpeg): equipe de heróis em silhueta -->
           <img src="IMG/noticia-equipe.jpeg" alt="Equipe de heróis fictícios em silhueta" loading="lazy">
           <div class="card-info">
             <span class="category">EQUIPES · CURIOSIDADES</span>
@@ -160,6 +170,152 @@
         </article>
       </div>
       <p class="no-results" id="noResults" role="status" hidden>Nenhuma notícia encontrada para essa pesquisa.</p>
+    </section>
+
+    <!-- =================================================
+         SEÇÃO CINEMA
+         Os lançamentos abaixo foram conferidos em 26/11/2026.
+         Datas podem mudar; quando só existe o ano anunciado,
+         isso fica indicado no próprio card.
+         ================================================= -->
+    <section class="cinema-section container" id="cinema">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">AGENDA DE ESTREIAS</span>
+          <h2>Próximos lançamentos</h2>
+          <p class="section-intro">Acompanhe os filmes anunciados da Marvel e da DC.</p>
+        </div>
+        <span class="section-mark" aria-hidden="true">HV / 02</span>
+      </div>
+
+      <div class="cinema-filters" aria-label="Filtrar lançamentos por universo">
+        <button class="cinema-filter active" type="button" data-universo="todos">Todos</button>
+        <button class="cinema-filter" type="button" data-universo="marvel">Marvel</button>
+        <button class="cinema-filter" type="button" data-universo="dc">DC</button>
+      </div>
+
+      <div class="movie-grid" id="movieGrid">
+        <article class="movie-card" data-universo="marvel">
+          <div class="movie-poster poster-doomsday"><span>MARVEL STUDIOS</span><strong>AVENGERS<br>DOOMSDAY</strong><small>18 · 12 · 2026</small></div>
+          <div class="movie-info">
+            <span class="category">MARVEL</span>
+            <h3>Vingadores: Doutor Destino</h3>
+            <p class="movie-date"><time datetime="2026-12-18">18 de dezembro de 2026</time></p>
+            <span class="release-status">Data anunciada</span>
+            <a class="movie-source" href="https://thewaltdisneycompany.com/news/marvel-studios-comic-con-2026/" target="_blank" rel="noopener noreferrer">Fonte oficial ↗</a>
+          </div>
+        </article>
+
+        <article class="movie-card" data-universo="dc">
+          <div class="movie-poster poster-man-tomorrow"><span>DC STUDIOS</span><strong>MAN OF<br>TOMORROW</strong><small>09 · 07 · 2027</small></div>
+          <div class="movie-info">
+            <span class="category">DC</span>
+            <h3>Man of Tomorrow</h3>
+            <p class="movie-date"><time datetime="2027-07-09">9 de julho de 2027</time></p>
+            <span class="release-status">Data anunciada</span>
+            <a class="movie-source" href="https://www.dc.com/blog/2025-09-03/superman-sequel-coming-to-theaters-in-2027" target="_blank" rel="noopener noreferrer">Fonte oficial ↗</a>
+          </div>
+        </article>
+
+        <article class="movie-card" data-universo="marvel">
+          <div class="movie-poster poster-secret-wars"><span>MARVEL STUDIOS</span><strong>AVENGERS<br>SECRET WARS</strong><small>17 · 12 · 2027</small></div>
+          <div class="movie-info">
+            <span class="category">MARVEL</span>
+            <h3>Vingadores: Guerras Secretas</h3>
+            <p class="movie-date"><time datetime="2027-12-17">17 de dezembro de 2027</time></p>
+            <span class="release-status">Data anunciada</span>
+            <a class="movie-source" href="https://ew.com/avengers-secret-wars-launching-pad-2028-movies-imagination-gone-wild-exclusive-12263231" target="_blank" rel="noopener noreferrer">Fonte ↗</a>
+          </div>
+        </article>
+
+        <article class="movie-card" data-universo="dc">
+          <div class="movie-poster poster-batman"><span>DC ELSEWORLDS</span><strong>THE<br>BATMAN<br>PART II</strong><small>18 · 02 · 2028</small></div>
+          <div class="movie-info">
+            <span class="category">DC · ELSEWORLDS</span>
+            <h3>The Batman: Parte II</h3>
+            <p class="movie-date"><time datetime="2028-02-18">18 de fevereiro de 2028</time></p>
+            <span class="release-status">Data divulgada</span>
+            <a class="movie-source" href="https://au.variety.com/2026/film/global/the-batman-2-release-date-2028-first-footage-pattinson-38605/" target="_blank" rel="noopener noreferrer">Fonte ↗</a>
+          </div>
+        </article>
+
+        <article class="movie-card" data-universo="marvel">
+          <div class="movie-poster poster-xmen"><span>MARVEL STUDIOS</span><strong>X-MEN</strong><small>05 · 05 · 2028</small></div>
+          <div class="movie-info">
+            <span class="category">MARVEL</span>
+            <h3>X-Men (novo filme)</h3>
+            <p class="movie-date"><time datetime="2028-05-05">5 de maio de 2028</time></p>
+            <span class="release-status">Data anunciada</span>
+            <a class="movie-source" href="https://thewaltdisneycompany.com/news/d23-2026-disney-entertainment-showcase/" target="_blank" rel="noopener noreferrer">Fonte oficial ↗</a>
+          </div>
+        </article>
+
+        <article class="movie-card" data-universo="marvel">
+          <div class="movie-poster poster-ghost-rider"><span>MARVEL STUDIOS</span><strong>GHOST<br>RIDER</strong><small>2028</small></div>
+          <div class="movie-info">
+            <span class="category">MARVEL</span>
+            <h3>Ghost Rider</h3>
+            <p class="movie-date">2028 · dia ainda não divulgado</p>
+            <span class="release-status">Ano anunciado</span>
+            <a class="movie-source" href="https://thewaltdisneycompany.com/news/marvel-studios-comic-con-2026/" target="_blank" rel="noopener noreferrer">Fonte oficial ↗</a>
+          </div>
+        </article>
+
+        <article class="movie-card" data-universo="marvel">
+          <div class="movie-poster poster-black-panther"><span>MARVEL STUDIOS</span><strong>BLACK<br>PANTHER 3</strong><small>15 · 12 · 2028</small></div>
+          <div class="movie-info">
+            <span class="category">MARVEL</span>
+            <h3>Pantera Negra 3</h3>
+            <p class="movie-date"><time datetime="2028-12-15">15 de dezembro de 2028</time></p>
+            <span class="release-status">Data anunciada</span>
+            <a class="movie-source" href="https://thewaltdisneycompany.com/news/marvel-studios-comic-con-2026/" target="_blank" rel="noopener noreferrer">Fonte oficial ↗</a>
+          </div>
+        </article>
+      </div>
+
+      <p class="cinema-note">Calendário consultado em 26 de novembro de 2026. Foram incluídos projetos anunciados e datas divulgadas publicamente. Estúdios podem alterar seus cronogramas.</p>
+
+      <div class="cinema-news">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">ALÉM DAS ESTREIAS</span>
+            <h2>Radar do cinema</h2>
+          </div>
+          <span class="section-mark" aria-hidden="true">HV / 03</span>
+        </div>
+
+        <div class="cinema-info-grid">
+          <article class="cinema-info-card">
+            <img src="IMG/noticia-cinema.jpg" alt="Imagem ilustrativa de uma produção cinematográfica" loading="lazy">
+            <div class="cinema-info-text">
+              <span class="category">MARVEL · BASTIDORES</span>
+              <h3>Secret Wars e o futuro da Marvel</h3>
+              <p>Em entrevista recente, Kevin Feige comentou que Vingadores: Guerras Secretas levará Battleworld para o cinema e servirá como ponto de partida para uma nova etapa do universo Marvel. A história pode marcar uma grande reorganização das narrativas depois da Saga do Multiverso.</p>
+              <a class="source-link" href="https://ew.com/avengers-secret-wars-launching-pad-2028-movies-imagination-gone-wild-exclusive-12263231" target="_blank" rel="noopener noreferrer">Ler a entrevista na Entertainment Weekly ↗</a>
+            </div>
+          </article>
+
+          <article class="cinema-info-card">
+            <img src="IMG/destaque-esperanca.jpg" alt="Imagem ilustrativa do universo de super-heróis da DC" loading="lazy">
+            <div class="cinema-info-text">
+              <span class="category">DC STUDIOS · NOVO FILME</span>
+              <h3>Superman terá continuação em Man of Tomorrow</h3>
+              <p>A DC confirmou Man of Tomorrow, escrito e dirigido por James Gunn, para 9 de julho de 2027. O projeto dá continuidade à nova fase cinematográfica iniciada com Superman e amplia o universo compartilhado da DC Studios.</p>
+              <a class="source-link" href="https://www.dc.com/blog/2025-09-03/superman-sequel-coming-to-theaters-in-2027" target="_blank" rel="noopener noreferrer">Ver anúncio oficial da DC ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAMADA PARA O QUIZ -->
+    <section class="quiz-callout container" id="desafio">
+      <div class="quiz-callout-text">
+        <span class="eyebrow">DESAFIO HEROVERSE</span>
+        <h2>Você conhece mesmo os universos Marvel e DC?</h2>
+        <p>Responda a cinco perguntas, teste sua memória e descubra seu nível de conhecimento sobre os heróis.</p>
+      </div>
+      <button class="primary-button" id="abrirQuiz" type="button" aria-controls="quizModal">Começar o quiz <span aria-hidden="true">→</span></button>
     </section>
 
     </div>
@@ -198,10 +354,37 @@
     <div class="footer-links">
       <a href="#inicio">Início</a>
       <a href="#ultimas">Notícias</a>
+      <a href="#cinema">Cinema</a>
     </div>
     <small>Projeto acadêmico demonstrativo. Conteúdo fictício para fins de apresentação.</small>
   </footer>
 
+
+  <!-- =================================================
+       MODAL DO QUIZ
+       O JavaScript cria as alternativas e controla a pontuação.
+       ================================================= -->
+  <div class="quiz-modal" id="quizModal" hidden>
+    <div class="quiz-overlay" id="quizOverlay"></div>
+    <section class="quiz-dialog" role="dialog" aria-modal="true" aria-labelledby="quizTitulo">
+      <button class="quiz-close" id="fecharQuiz" type="button" aria-label="Fechar quiz">×</button>
+      <span class="eyebrow">DESAFIO HEROVERSE</span>
+      <h2 id="quizTitulo">Quiz Marvel &amp; DC</h2>
+      <div class="quiz-progress-info">
+        <span id="quizProgressoTexto">Questão 1 de 5</span>
+        <span>5 perguntas</span>
+      </div>
+      <div class="quiz-progress"><div id="quizBarraProgresso"></div></div>
+      <h3 class="quiz-question" id="quizPergunta">Carregando pergunta...</h3>
+      <div class="quiz-options" id="quizAlternativas"></div>
+      <p class="quiz-feedback" id="quizFeedback" role="status" hidden></p>
+      <div class="quiz-actions">
+        <button class="primary-button" id="confirmarResposta" type="button" disabled>Confirmar resposta</button>
+        <button class="primary-button" id="proximaPergunta" type="button" hidden>Próxima pergunta</button>
+        <button class="secondary-button" id="jogarNovamente" type="button" hidden>Jogar novamente</button>
+      </div>
+    </section>
+  </div>
 
   <!-- Liga o arquivo JavaScript. Fica no final para o HTML já ter sido carregado antes -->
   <!-- noticias.js guarda o conteúdo das matérias e precisa vir ANTES do script.js -->
