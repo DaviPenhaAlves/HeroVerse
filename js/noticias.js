@@ -1,21 +1,3 @@
-/* =====================================================
-   HEROVERSE - DADOS DAS NOTÍCIAS
-   Este arquivo guarda só o CONTEÚDO das matérias.
-   Quem mostra as matérias na tela é o script.js.
-
-   COMO ADICIONAR OU EDITAR UMA MATÉRIA:
-   - Cada matéria tem um "id" (a palavra antes dos dois pontos).
-     Esse id é usado no link do card: href="#noticia/ID"
-   - titulo, subtitulo, categoria, data, dataTexto, imagem e imagemAlt
-     são textos simples entre aspas.
-   - conteudo é uma lista de textos. Cada texto vira um parágrafo.
-     Se o texto começar com "## ", ele vira um subtítulo.
-
-   AVISO: as matérias são ANÁLISES EDITORIAIS DEMONSTRATIVAS,
-   escritas para este projeto acadêmico. As datas de publicação
-   são fictícias.
-   ===================================================== */
-
 var noticias = {
 
   /* ---------- MATÉRIA 1 ---------- */
