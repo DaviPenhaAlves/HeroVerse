@@ -11,8 +11,7 @@
   <link rel="stylesheet" href="css/style.css">   <!-- liga o arquivo de estilos (CSS) -->
 </head>
 <body>
-  <!-- CABEÇALHO: logo, menu de links, botão do menu (celular) e botão da pesquisa.
-       A logo é feita só com texto, não precisa de imagem. -->
+  <!-- CABEÇALHO: logo, menu de links, botão do menu (celular) e botão da pesquisa. A logo é feita só com texto, não precisa de imagem. -->
   <header class="site-header">
     <a class="logo" href="#inicio" aria-label="HeroVerse - página inicial">HERO<span>VERSE</span></a>
 
@@ -41,10 +40,9 @@
     <!-- PÁGINA INICIAL: tudo que está dentro desta div some quando uma matéria é aberta (controlado pelo script.js) -->
     <div id="paginaInicial">
 
-    <!-- BANNER PRINCIPAL (destaque: Vingadores: Doutor Destino): imagem grande com título e texto por cima -->
+    <!-- BANNER PRINCIPAL (destaque: Vingadores: Doutor Destino)-->
     <section class="hero-banner" aria-labelledby="heroTitle">
-      <!-- IMAGEM 1 (IMG/hero.jpg): imagem de divulgação de "Vingadores: Doutor Destino" (pôster ou cena do trailer).
-           Use uma foto horizontal, de preferência com 1920 x 800 px ou maior. O lado esquerdo fica escurecido pelo texto. -->
+      <!-- IMAGEM 1 (IMG/hero.jpg).-->
       <img class="hero-image" src="IMG/hero.jpg" alt="Imagem de divulgação de Vingadores: Doutor Destino">
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-content">
@@ -56,10 +54,7 @@
     </section>
 
 
-    <!-- TRÊS MATÉRIAS EM DESTAQUE (imagens 2, 3 e 4). Tamanho sugerido: 800 x 400 px, na horizontal.
-         Cada <article> é um card. Para mudar o texto, edite o que está dentro de <span>, <h2> e <p>.
-         O link do título (class="card-link") abre a matéria. O trecho depois de #noticia/ precisa ser
-         igual ao id da matéria no arquivo js/noticias.js. O link cobre o card inteiro (veja o CSS). -->
+    <!-- TRÊS MATÉRIAS EM DESTAQUE (imagens 2, 3 e 4). -->
     <section class="featured container" aria-label="Notícias em destaque">
       <article class="feature-card">
         <!-- IMAGEM 2 (IMG/destaque-tecnologia.jpg): armadura ou tecnologia de um herói -->
@@ -93,10 +88,7 @@
     </section>
 
 
-    <!-- ÚLTIMAS NOTÍCIAS: o campo de pesquisa filtra estes seis cards.
-         Imagens 5 a 10. Tamanho sugerido: 800 x 420 px, na horizontal.
-         O atributo data-search guarda palavras extras para a pesquisa encontrar o card.
-         Para criar uma nova notícia, copie um <article> inteiro e troque as imagens e os textos. -->
+    <!-- ÚLTIMAS NOTÍCIAS: o campo de pesquisa filtra estes seis cards. -->
     <section class="latest container" id="ultimas">
       <div class="section-heading">
         <div>
