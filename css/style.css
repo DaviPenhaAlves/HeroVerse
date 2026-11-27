@@ -1,14 +1,5 @@
-/* =====================================================
-   HEROVERSE - ESTILOS (CSS)
-   O CSS define a aparência: cores, tamanhos e posições.
-   Cada bloco abaixo segue o modelo:
-   seletor { propriedade: valor; }
-   ===================================================== */
 
-
-/* ===== CORES DO SITE =====
-   As variáveis ficam aqui para mudar uma cor em um só lugar.
-   Para usar: var(--nome-da-cor) */
+/* As variáveis ficam aqui para mudar uma cor em um só lugar. Para usar: var(--nome-da-cor) */
 :root {
   --background: #17191d;      /* fundo da página */
   --surface: #22252b;         /* fundo dos cards */
@@ -752,3 +743,607 @@ button {
     margin-top: 55px;
   }
 }
+
+
+/* =====================================================
+   HEROVERSE 3.0 - NOVAS ANIMAÇÕES, CINEMA E QUIZ
+   Este bloco complementa os estilos que já existiam.
+   ===================================================== */
+
+/* ===== ANIMAÇÕES DE ENTRADA ===== */
+.hero-image {
+  animation: zoomDoBanner 20s ease-in-out infinite alternate;
+  transform-origin: center center;
+}
+
+@keyframes zoomDoBanner {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+.hero-content .eyebrow,
+.hero-content h1,
+.hero-content p,
+.hero-content .text-link {
+  opacity: 0;
+  animation: entradaDoBanner 0.8s ease forwards;
+}
+
+.hero-content .eyebrow { animation-delay: 0.2s; }
+.hero-content h1 { animation-delay: 0.4s; }
+.hero-content p { animation-delay: 0.6s; }
+.hero-content .text-link { animation-delay: 0.8s; }
+
+@keyframes entradaDoBanner {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* O JavaScript adiciona estas classes quando os elementos entram na tela. */
+.reveal-item,
+.reveal-group {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal-item.visible,
+.reveal-group.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.feature-card:nth-child(2),
+.news-card:nth-child(2),
+.movie-card:nth-child(2) { transition-delay: 0.08s; }
+.feature-card:nth-child(3),
+.news-card:nth-child(3),
+.movie-card:nth-child(3) { transition-delay: 0.16s; }
+.news-card:nth-child(4),
+.movie-card:nth-child(4) { transition-delay: 0.08s; }
+.news-card:nth-child(5),
+.movie-card:nth-child(5) { transition-delay: 0.16s; }
+
+/* Interação mais perceptível nos cards e imagens. */
+.feature-card img,
+.news-card img,
+.cinema-info-card img {
+  transition: transform 0.45s ease;
+}
+
+.feature-card:hover img,
+.news-card:hover img,
+.cinema-info-card:hover img {
+  transform: scale(1.045);
+}
+
+.main-nav a {
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -7px;
+  height: 2px;
+  background: var(--yellow);
+  transition: right 0.25s ease;
+}
+
+.main-nav a:hover::after,
+.main-nav a.active::after { right: 0; }
+
+.search-box:not([hidden]) {
+  animation: abrirPesquisa 0.22s ease;
+}
+
+@keyframes abrirPesquisa {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.article-view:not([hidden]) {
+  animation: entradaArtigo 0.45s ease both;
+}
+
+@keyframes entradaArtigo {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+button,
+.primary-button,
+.secondary-button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+button:active,
+.primary-button:active,
+.secondary-button:active { transform: scale(0.98); }
+
+/* ===== BOTÃO DO QUIZ NO MENU ===== */
+.nav-quiz-button {
+  border: 1px solid rgba(240, 196, 77, 0.55);
+  border-radius: 20px;
+  padding: 7px 15px;
+  background: rgba(240, 196, 77, 0.08);
+  color: var(--yellow);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.nav-quiz-button:hover {
+  background: rgba(240, 196, 77, 0.18);
+  box-shadow: 0 0 18px rgba(240, 196, 77, 0.12);
+}
+
+/* ===== SEÇÃO CINEMA ===== */
+.cinema-section {
+  padding-top: 78px;
+  scroll-margin-top: 24px;
+}
+
+.section-intro {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.cinema-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 22px;
+}
+
+.cinema-filter {
+  padding: 8px 17px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: #d4d5d8;
+  background: var(--surface);
+  font-size: 13px;
+}
+
+.cinema-filter:hover,
+.cinema-filter.active {
+  color: var(--yellow);
+  border-color: rgba(240, 196, 77, 0.55);
+  background: rgba(240, 196, 77, 0.08);
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.movie-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(240, 196, 77, 0.48);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+}
+
+.movie-card[hidden] { display: none; }
+
+.movie-poster {
+  min-height: 245px;
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  color: white;
+  position: relative;
+  isolation: isolate;
+}
+
+.movie-poster::before,
+.movie-poster::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(2px);
+}
+
+.movie-poster::before {
+  width: 210px;
+  height: 210px;
+  right: -70px;
+  top: -55px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.movie-poster::after {
+  width: 170px;
+  height: 170px;
+  left: -65px;
+  bottom: -55px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.movie-poster span {
+  font-size: 9px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+.movie-poster strong {
+  font-size: clamp(23px, 2.1vw, 32px);
+  line-height: 1.02;
+  letter-spacing: -0.8px;
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.35);
+}
+
+.movie-poster small {
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.poster-doomsday { background: linear-gradient(145deg, #6d1e24, #17191d 72%); }
+.poster-man-tomorrow { background: linear-gradient(145deg, #245d8d, #141b2c 72%); }
+.poster-secret-wars { background: linear-gradient(145deg, #513477, #151925 72%); }
+.poster-batman { background: linear-gradient(145deg, #343942, #090b10 72%); }
+.poster-xmen { background: linear-gradient(145deg, #7b4b20, #17191d 72%); }
+.poster-ghost-rider { background: linear-gradient(145deg, #9a3b1e, #17191d 72%); }
+.poster-black-panther { background: linear-gradient(145deg, #4b347d, #11131a 72%); }
+
+.movie-info { padding: 15px; }
+.movie-info h3 {
+  min-height: 44px;
+  margin: 7px 0 9px;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.movie-date {
+  margin: 0 0 11px;
+  color: #d1d2d6;
+  font-size: 13px;
+}
+
+.release-status {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 4px;
+  background: rgba(240, 196, 77, 0.1);
+  color: var(--yellow);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.cinema-note {
+  margin: 18px 0 0;
+  color: #8f929a;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.cinema-news { margin-top: 64px; }
+.cinema-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.cinema-info-card {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+}
+
+.cinema-info-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  background: var(--surface-light);
+}
+
+.cinema-info-text { padding: 19px; }
+.cinema-info-text h3 {
+  margin: 8px 0 10px;
+  font-size: 19px;
+  line-height: 1.25;
+}
+.cinema-info-text p {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.source-link {
+  color: var(--yellow);
+  font-size: 12px;
+  font-weight: 700;
+}
+.source-link:hover { text-decoration: underline; }
+
+/* ===== CHAMADA DO QUIZ ===== */
+.quiz-callout {
+  margin-top: 76px;
+  padding: 30px 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border: 1px solid rgba(72, 110, 157, 0.5);
+  border-radius: 10px;
+  background: radial-gradient(circle at 85% 20%, rgba(54, 90, 133, 0.38), transparent 38%), linear-gradient(110deg, #222b39, #202329 70%);
+}
+
+.quiz-callout-text { max-width: 680px; }
+.quiz-callout h2 {
+  margin: 8px 0;
+  font-size: 27px;
+  line-height: 1.2;
+}
+.quiz-callout p {
+  margin: 0;
+  color: #c2c5cc;
+  font-size: 14px;
+}
+
+.primary-button,
+.secondary-button {
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 12px 18px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.primary-button {
+  background: var(--yellow);
+  color: #17191d;
+}
+.primary-button:hover {
+  background: #ffda70;
+  box-shadow: 0 7px 22px rgba(240, 196, 77, 0.18);
+}
+.primary-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.secondary-button {
+  color: var(--text);
+  background: var(--surface-light);
+  border-color: var(--border);
+}
+.secondary-button:hover { border-color: rgba(240, 196, 77, 0.45); }
+
+/* ===== JANELA DO QUIZ ===== */
+.quiz-modal[hidden] { display: none; }
+.quiz-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.quiz-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 7, 11, 0.82);
+  backdrop-filter: blur(7px);
+  animation: aparecerOverlay 0.2s ease;
+}
+
+@keyframes aparecerOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.quiz-dialog {
+  width: min(100%, 610px);
+  max-height: min(90vh, 760px);
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+  padding: 32px;
+  border: 1px solid rgba(240, 196, 77, 0.27);
+  border-radius: 13px;
+  background: linear-gradient(145deg, #292d36, #1b1e24 65%);
+  box-shadow: 0 25px 90px rgba(0, 0, 0, 0.55), 0 0 36px rgba(43, 83, 132, 0.16);
+  animation: abrirQuiz 0.3s ease both;
+}
+
+@keyframes abrirQuiz {
+  from { opacity: 0; transform: translateY(18px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.quiz-close {
+  position: absolute;
+  top: 13px;
+  right: 15px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-size: 24px;
+  line-height: 1;
+}
+.quiz-close:hover { color: var(--yellow); border-color: var(--yellow); }
+
+.quiz-dialog h2 {
+  margin: 7px 0 22px;
+  font-size: 28px;
+}
+.quiz-progress-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.quiz-progress {
+  height: 6px;
+  margin: 9px 0 25px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #101216;
+}
+.quiz-progress div {
+  width: 20%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #3f78ae, var(--yellow));
+  transition: width 0.35s ease;
+}
+
+.quiz-question {
+  margin: 0 0 19px;
+  font-size: 20px;
+  line-height: 1.35;
+}
+.quiz-options {
+  display: grid;
+  gap: 10px;
+}
+.quiz-option {
+  width: 100%;
+  padding: 13px 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text);
+  text-align: left;
+  font-size: 14px;
+}
+.quiz-option:hover,
+.quiz-option.selected {
+  border-color: rgba(240, 196, 77, 0.65);
+  background: rgba(240, 196, 77, 0.08);
+}
+.quiz-option.correct {
+  border-color: #4bbd83;
+  background: rgba(75, 189, 131, 0.12);
+}
+.quiz-option.incorrect {
+  border-color: #d76b6b;
+  background: rgba(215, 107, 107, 0.12);
+}
+.quiz-option:disabled { cursor: default; opacity: 1; }
+.quiz-option-letter {
+  width: 27px;
+  height: 27px;
+  flex: 0 0 27px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--yellow);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.quiz-feedback {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  border-left: 3px solid var(--yellow);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.045);
+  color: #e0e1e4;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.quiz-feedback[hidden] { display: none; }
+.quiz-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+}
+.quiz-actions button[hidden] { display: none; }
+
+/* ===== RESPONSIVIDADE DAS NOVAS SEÇÕES ===== */
+@media (max-width: 1000px) {
+  .movie-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 850px) {
+  .nav-quiz-button { width: 100%; text-align: left; }
+  .cinema-section { padding-top: 60px; }
+  .movie-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .quiz-callout { align-items: flex-start; flex-direction: column; }
+  .quiz-callout .primary-button { align-self: flex-start; }
+}
+
+@media (max-width: 560px) {
+  .cinema-section { padding-top: 48px; }
+  .movie-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .movie-poster { min-height: 190px; padding: 13px 8px; }
+  .movie-poster strong { font-size: 21px; }
+  .movie-poster span { font-size: 8px; letter-spacing: 1px; }
+  .movie-poster small { font-size: 8px; letter-spacing: 1px; }
+  .movie-info { padding: 11px; }
+  .movie-info h3 { min-height: 0; font-size: 14px; }
+  .movie-date { min-height: 36px; font-size: 11px; }
+  .release-status { font-size: 9px; }
+  .cinema-info-grid { grid-template-columns: 1fr; }
+  .cinema-info-card img { height: 170px; }
+  .quiz-callout { padding: 24px 20px; margin-top: 54px; }
+  .quiz-callout h2 { font-size: 23px; }
+  .quiz-callout .primary-button { width: 100%; }
+  .quiz-modal { padding: 12px; }
+  .quiz-dialog { padding: 26px 19px 21px; max-height: 94vh; }
+  .quiz-dialog h2 { font-size: 24px; }
+  .quiz-question { font-size: 18px; }
+  .quiz-option { padding: 11px; font-size: 13px; }
+  .quiz-actions { justify-content: stretch; }
+  .quiz-actions button { width: 100%; }
+}
+
+/* Pessoas que preferem menos movimento recebem uma versão mais estática. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-item,
+  .reveal-group {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.movie-source {
+  display: inline-block;
+  margin-top: 9px;
+  color: #aeb8c7;
+  font-size: 10px;
+  font-weight: 700;
+}
+.movie-source:hover { color: var(--yellow); text-decoration: underline; }
